@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${user.fio}"></title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page product-page">
+    <section class="clean-block clean-product dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-primary text-center"
+                    th:text="${user.fio}"></h2>
+            </div>
+            <div class="block-content">
+                <div class="product-info">
+                    <div class="row">
+                        <div class="col-4">
+                            <img th:src="'/img/' + ${user.photo}" class="d-block w-100">
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col mb-2">
+                                    <a href="/profile/edit/" class="btn btn-success w-100">Редактировать</a>
+                                </div>
+                            </div>
+                            <p th:if="${user.specialization != null}" class="fs-4" th:text="${'Место распределения: ' + user.specialization.name}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <td class="stat">Серия паспорта</td>
+                                <td th:text="${user.passport}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Дата рождения</td>
+                                <td th:text="${user.student.date}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Кем выдан паспорт</td>
+                                <td th:text="${user.student.issued}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Дата выдачи паспорта</td>
+                                <td th:text="${user.student.issued_date}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Идентификационный номер</td>
+                                <td th:text="${user.student.identity}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Адрес</td>
+                                <td th:text="${user.student.address}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Мобильный телефон</td>
+                                <td th:text="${user.student.tel_mob}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Домашний телефон</td>
+                                <td th:text="${user.student.tel_home}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Электронная почта</td>
+                                <td th:text="${user.student.email}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Группа</td>
+                                <td th:text="${user.student.job}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Статус</td>
+                                <td th:text="${user.student.post}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Семейное положение</td>
+                                <td th:text="${user.student.marital.name}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Гражданство</td>
+                                <td th:text="${user.student.citizenship.name}"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat">Военнообязанный</td>
+                                <td th:text="${user.student.conscripted.name}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Вопросы студентов</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-primary text-center">Вопросы студентов</h2>
+            </div>
+            <div class="content" style="padding: 20px">
+                <form action="/reviews/add" method="post" class="mb-5">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" name="review" class="form-control" placeholder="Напишите отзыв..."></div>
+                        <div class="col-auto">
+                            <button class="btn btn-primary">Добавить</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div th:each="i : ${reviews}" class="col-12">
+                        <p class="lead"
+                           th:text="${i.owner.fio + ' | ' + i.date}"></p>
+                        <p th:text="${i.review}"></p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

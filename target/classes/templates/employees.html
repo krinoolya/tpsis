@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>База сотрудников</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-primary text-center">База сотрудников</h2>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="products">
+                            <div class="row g-0">
+                                <div th:each="i : ${employees}" class="col-4">
+                                    <div class="clean-product-item">
+                                        <div class="image">
+                                            <img class="img-fluid d-block mx-auto"
+                                                 th:src="'/img/' + ${i.photo}">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" align="center">
+                                                <span class="lead" th:text="${i.fio}"></span>
+                                            </div>
+                                            <div class="col-12">
+                                                <span>Факультет: </span>
+                                                <span th:text="${i.employee.faculty}"></span>
+                                            </div>
+                                            <div class="col-12">
+                                                <span>Контактный телефон: </span>
+                                                <span th:text="${i.employee.tel}"></span>
+                                            </div>
+                                            <div th:if="${role == 'ADMIN'}" class="col-12 mt-2">
+                                                <a th:href="'/employees/edit/' + ${i.id}" class="btn btn-primary w-100">Редактировать</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

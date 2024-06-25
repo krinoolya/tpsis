@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Заявки на распределение</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-primary text-center">Заявки на распределение</h2>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-6">
+                    <div th:if="${message}" class="alert alert-warning text-center" role="alert">
+                        <strong th:text="${message}"></strong>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="p-2">
+                <a th:if="${enrollments.size() > 0}" href="/enrollments/enrollment/all" class="btn btn-primary w-100">Автоматически распределить всех</a>
+                <hr>
+                <div class="row">
+                    <div th:each="i : ${enrollments}" class="col-3 px-3">
+                        <img class="rounded-5 w-100 mb-2" th:src="'/img/' + ${i.photo}">
+                        <p class="mb-2" th:text="${'ФИО: ' + i.fio}"></p>
+                        <p class="mb-2" th:text="${'Паспорт: ' + i.passport}"></p>
+                        <p class="mb-2" th:text="${'Количество балов: ' + i.point}"></p>
+                        <div th:if="${i.specialization != null}">
+                            <p class="mb-2" th:text="${'Cпециальность: ' + i.specialization.name}"></p>
+                            <a th:href="'/enrollments/enrollment/' + ${i.id}"
+                               class="btn btn-primary w-100 mb-2">Распределить</a>
+                            <a th:href="'/enrollments/enrollment/' + ${i.id} + '/reject'"
+                               class="btn btn-danger w-100">Отклонить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

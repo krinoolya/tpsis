@@ -1,0 +1,29 @@
+<nav th:fragment="nav" class="navbar navbar-light navbar-expand-lg clean-navbar mb-5 shadow">
+    <div class="container"><a class="navbar-brand logo" href="/">Distribution <br> Graduates</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ms-auto text-center align-items-center">
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/enrollments">Заявки на распределение</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/users">Управление ролями</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/statistics">Аналитика</a></li>
+                <li th:if="${role == 'ADMIN' or role == 'EMPLOYEE'}" class="nav-item"><a class="nav-link" href="/catalog">База студентов</a></li>
+
+                <li th:if="${role == 'EMPLOYEE'}" class="nav-item"><a class="nav-link" href="/specialties">Компании</a></li>
+                <li th:if="${role == 'EMPLOYEE'}" class="nav-item"><a class="nav-link" href="/students/add">Добавить</a></li>
+
+                <li th:if="${role == 'STUDENT'}" class="nav-item"><a class="nav-link" href="/profile">Мой профиль</a></li>
+
+                <li th:if="${role == 'USER'}" class="nav-item"><a class="nav-link" href="/enrollments/add">Заявка на распределение</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="/employees">База сотрудников</a></li>
+                <li class="nav-item"><a class="nav-link" href="/reviews">Вопросы студентов</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">О нас</a></li>
+
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link" href="/login">Вход</a></li>
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link" href="/reg">Регистрация</a></li>
+                <li th:if="${role != 'NOT'}" class="nav-item"><a class="nav-link" href="/logout">Выход</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

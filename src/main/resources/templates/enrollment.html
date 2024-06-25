@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Заявка на распределение</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-primary text-center">Заявка на распределение</h2>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-6">
+                    <div th:if="${message}" class="alert alert-warning text-center" role="alert">
+                        <strong th:text="${message}"></strong>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div align="center">
+                <form action="/enrollments/add" class="w-50" method="post"
+                      enctype="multipart/form-data">
+                    <img th:src="${'/img/' + user.photo}" class="w-50 rounded-5 shadow">
+                    <hr>
+                    <div class="row">
+                        <div class="col-auto">
+                            <p class="lead">Средний балл</p>
+                        </div>
+                        <div class="col">
+                            <input type="number" min="0" max="400" step="1" placeholder="Количество балов" required
+                                   name="point"
+                                   class="form-control my-1" th:value="${user.point}">
+                        </div>
+                    </div>
+                    <select name="specializationId" class="form-select my-1" required>
+                        <option value="0">Выберите</option>
+                        <option th:each="i : ${specialties}" th:value="${i.id}" th:label="${i.name}"
+                                th:selected="${i == user.specialization}"></option>
+                    </select>
+                    <p class="lead my-1">Фотография</p>
+                    <input type="file" accept="image/*" name="photo" class="form-control my-1">
+                    <button class="btn btn-primary w-100" type="submit">Обновить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>База студентов</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-primary text-center">База студентов</h2>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-3">
+                        <form method="post" action="/search">
+                            <div class="filters" style="padding-left: 20px;padding-top: 15px;">
+                                <div class="filter-item">
+                                    <h5>Группа</h5>
+                                    <input type="text" class="form-control mb-2" name="group" th:value="${gpSelect}">
+                                    <h5>Семейное положение</h5>
+                                    <select class="form-select mb-2" name="marital">
+                                        <option th:each="i : ${maritals}" th:value="${i}" th:label="${i.name}"
+                                                th:selected="${i == marSelect}"></option>
+                                    </select>
+                                    <h5>Гражданство</h5>
+                                    <select class="form-select mb-2" name="citizenship">
+                                        <option th:each="c : ${citizenships}" th:value="${c}" th:label="${c.name}"
+                                                th:selected="${c == citSelect}"></option>
+                                    </select>
+                                    <h5>Военнообязанный</h5>
+                                    <select class="form-select mb-2" name="conscripted">
+                                        <option th:each="i : ${yesnos}" th:value="${i}" th:label="${i.name}"
+                                                th:selected="${i == conSelect}"></option>
+                                    </select>
+                                </div>
+                                <div class="filter-item">
+                                    <button class="btn btn-primary" type="submit" style="margin-right: 10px;">Найти
+                                    </button>
+                                    <a class="btn btn-secondary" role="button" href="/catalog">Сбросить</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="products">
+                            <div class="row g-0">
+                                <div th:each="h : ${students}" class="col-12 col-md-6 col-lg-4">
+                                    <div class="clean-product-item text-center">
+                                        <div class="image" style="height: 200px">
+                                            <a th:href="'/students/' + ${h.id}">
+                                                <img class="rounded" style="max-width: 100%;max-height: 200px"
+                                                     th:src="'/img/' + ${h.photo}">
+                                            </a>
+                                        </div>
+                                        <div class="product-name">
+                                            <a th:href="'/students/' + ${h.id}"
+                                               th:text="${h.fio}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+
+</body>
+
+</html>

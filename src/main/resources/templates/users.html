@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Управление ролями</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-primary text-center">Управление ролями</h2>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-6">
+                    <div th:if="${message}" class="alert alert-warning text-center" role="alert">
+                        <strong th:text="${message}"></strong>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="content">
+                <div class="row p-2">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col text-center">
+                                <h4>Логин</h4>
+                            </div>
+                            <div class="col text-center">
+                                <h4>Роль</h4>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-2"></div>
+                        </div>
+                        <form th:each="u : ${users}" th:if="${user.id != u.id}" th:action="'/users/edit/' + ${u.id}" method="post" class="mt-2">
+                            <div class="row">
+                                <div class="col">
+                                    <input class="form-control" type="text" readonly="" th:value="${u.username}">
+                                </div>
+                                <div class="col">
+                                    <select class="form-select" name="role">
+                                        <option th:each="r : ${roles}" th:value="${r}" th:label="${r.name}"
+                                                th:selected="${u.role == r}"></option>
+                                    </select></div>
+                                <div class="col-2">
+                                    <button class="btn btn-primary w-100" type="submit">&nbsp;Обновить</button>
+                                </div>
+                                <div class="col-2">
+                                    <a class="btn btn-danger w-100" th:href="'/users/delete/' + ${u.id}">Удалить</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

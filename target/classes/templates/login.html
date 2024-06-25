@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Вход</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page login-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-primary text-center">Вход</h2>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-6">
+                    <div th:if="${param.error}" class="alert alert-warning text-center" role="alert">
+                        <strong>Некорректный ввод логина и пароля!</strong>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <form action="/login" method="post">
+                <div class="mb-3">
+                    <input class="form-control" type="text" name="username" required placeholder="Логин">
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" type="password" name="password" required placeholder="Пароль">
+                </div>
+                <button class="btn btn-primary w-100" type="submit">Войти</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

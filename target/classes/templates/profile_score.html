@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Мои навыки</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page product-page">
+    <section class="clean-block clean-product dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-primary text-center">Мои навыки</h2>
+            </div>
+            <div class="block-content">
+                <form action="/profile/score/" method="post" enctype="multipart/form-data">
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Коммуникации</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="number" required name="com" min="0" max="10"
+                                           step="1" th:value="${student.score.com}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Работа в команде</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="number" required name="team" min="0" max="10"
+                                           step="1" th:value="${student.score.team}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Стрессоустойчивость</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="number" required name="stress" min="0" max="10"
+                                           step="1" th:value="${student.score.stress}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Самостоятельность</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="number" required name="ind" min="0" max="10"
+                                           step="1" th:value="${student.score.ind}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Дисциплина</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="number" required name="dis" min="0" max="10"
+                                           step="1" th:value="${student.score.dis}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-2">
+                            <button class="btn btn-primary" type="submit" style="margin-right: 15px;">Подтвердить</button>
+                            <button class="btn btn-secondary" type="reset">Очистить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

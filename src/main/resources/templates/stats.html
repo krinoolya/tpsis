@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Аналитика</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page product-page">
+    <section class="clean-block clean-product dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-primary text-center">Аналитика</h2>
+            </div>
+            <div class="block-content">
+                <div class="row">
+                    <div class="col">
+                        <div hidden>
+                            <span id="topQuantityName0" th:text="${topQuantityName[0]}"></span>
+                            <span id="topQuantityNumber0" th:text="${topQuantityNumber[0]}"></span>
+                            <span id="topQuantityName1" th:text="${topQuantityName[1]}"></span>
+                            <span id="topQuantityNumber1" th:text="${topQuantityNumber[1]}"></span>
+                        </div>
+                        <div class="col">
+                            <div id="topQuantity" style="width: 100%; height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", {packages: ["corechart"]});
+    google.charts.setOnLoadCallback(topQuantity);
+
+    function topQuantity() {
+        var topQuantityName0 = document.querySelector('#topQuantityName0').textContent;
+        var topQuantityNumber0 = parseInt(document.querySelector('#topQuantityNumber0').textContent);
+        var topQuantityName1 = document.querySelector('#topQuantityName1').textContent;
+        var topQuantityNumber1 = parseInt(document.querySelector('#topQuantityNumber1').textContent);
+        var data = google.visualization.arrayToDataTable([
+            ['ФИО', 'Баллов', {role: 'style'}, {role: 'annotation'}],
+            [topQuantityName0, topQuantityNumber0, "red", topQuantityNumber0],
+            [topQuantityName1, topQuantityNumber1, "brown", topQuantityNumber1],
+        ]);
+
+        var options = {
+            title: 'Выпускники',
+            hAxis: {title: ''},
+            vAxis: {title: 'Количество'},
+            bar: {groupWidth: "80%"},
+            legend: {position: "none"}
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('topQuantity'));
+        chart.draw(data, options);
+    }
+
+</script>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

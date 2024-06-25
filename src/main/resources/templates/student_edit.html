@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Редактировать</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page product-page">
+    <section class="clean-block clean-product dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-primary text-center">Редактировать</h2>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-6">
+                    <div th:if="${message}" class="alert alert-warning text-center" role="alert">
+                        <strong th:text="${message}"></strong>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="block-content">
+                <form th:action="'/students/edit/' + ${student.id}" method="post" enctype="multipart/form-data">
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Фамилия</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="surname"
+                                           th:value="${student.surname}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Имя</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="name"
+                                           th:value="${student.name}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Отчество</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="patronymic"
+                                           th:value="${student.patronymic}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Серия паспорта (AA)</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="passport"
+                                           th:value="${student.passport}" pattern="[A-Z]{2,2}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Дата рождения</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="date" required="" name="date"
+                                           th:value="${student.student.date}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Кем выдан паспорт</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="issued"
+                                           th:value="${student.student.issued}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Дата выдачи паспорта</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="date" required="" name="issued_date"
+                                           th:value="${student.student.issued_date}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Идентификационный номер</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="identity"
+                                           th:value="${student.student.identity}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Адрес</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="address"
+                                           th:value="${student.student.address}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Мобильный телефон (123121231212)</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="tel" required="" name="tel_mob"
+                                           pattern="\d{12,12}"
+                                           th:value="${student.student.tel_mob}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Домашний телефон</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="tel" required="" name="tel_home"
+                                           th:value="${student.student.tel_home}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Электронная почта</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="email" required="" name="email"
+                                           th:value="${student.student.email}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Группа</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="job"
+                                           th:value="${student.student.job}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Статус</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" required="" name="post"
+                                           th:value="${student.student.post}"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Семейное положение</p>
+                                </div>
+                                <div class="col">
+                                    <select class="form-select" name="marital" required>
+                                        <option th:each="i : ${maritals}" th:value="${i}" th:label="${i.name}"
+                                                th:selected="${i == student.student.marital}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Гражданство</p>
+                                </div>
+                                <div class="col">
+                                    <select class="form-select" name="citizenship" required>
+                                        <option th:each="i : ${citizenships}" th:value="${i}" th:label="${i.name}"
+                                                th:selected="${i == student.student.citizenship}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Военнообязанный</p>
+                                </div>
+                                <div class="col">
+                                    <select class="form-select" name="conscripted" required>
+                                        <option th:each="i : ${yesnos}" th:value="${i}" th:label="${i.name}"
+                                                th:selected="${i == student.student.conscripted}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>Фотография</p>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="file" accept="imaage/*" name="photo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-2">
+                            <button class="btn btn-primary" type="submit" style="margin-right: 15px;">Обновить</button>
+                            <button class="btn btn-student" type="reset">Очистить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>
